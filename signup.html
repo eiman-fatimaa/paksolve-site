@@ -6,6 +6,31 @@
   <title>Sign Up – PakSolve</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+  <!-- Chatbot Icon -->
+<div id="chatbot-icon">
+  <img src="images/LOGO.png" alt="PakSolve Assistant">
+  <div class="chatbot-tooltip">Ask PakSolve Assistant</div>
+</div>
+
+<!-- Chat Window -->
+<div id="chatbot-window">
+  <div class="chat-header">
+    <span>PakSolve Assistant</span>
+    <button id="chat-close">✕</button>
+  </div>
+
+  <div id="chat-messages"></div>
+
+  <div class="chat-input-area">
+    <input id="chat-input" type="text" placeholder="Type your message...">
+    <button id="chat-send">Send</button>
+  </div>
+</div>
+
+<script src="chatbot.js"></script>
+<script>
+  initChatbot();
+</script>
 <body>
      <!-- ── NAVIGATION BAR ── -->
   <header class="site-header">
