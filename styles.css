@@ -262,26 +262,40 @@ p {
   margin: 0 auto;
 }
 
-/* ---------- PAKSOLVE CARDS ---------- */
 .paksolve-cards {
   display: flex;
-  flex-direction: row; /* horizontal layout */
   gap: 30px;
   padding: 40px 20px;
   max-width: 1200px;
   margin: 0 auto;
-  flex-wrap: wrap; /* allows wrapping on smaller screens */
+  flex-wrap: wrap; /* allows stacking on small screens */
 }
 
 .paksolve-card {
-  flex: 1; /* each card takes equal space */
-  min-width: 280px; /* prevent too small on mobile */
-  background-color: #008080; /* teal green */
-  color: #ffffff;
+  flex: 1;
+  min-width: 280px;
   border-radius: 20px;
-  padding: 40px 30px;
+  overflow: hidden;
+  position: relative;
   text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
+  height: 250px;
+  color: #ffffff;
+  display: flex;
+  align-items: flex-end; /* pushes content to bottom */
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* overlay to soften background image */
+.card-overlay {
+  background-color: rgba(0, 128, 128, 0.6); /* teal overlay with 0.6 opacity */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end; /* keep content at bottom */
+  border-radius: 20px;
+  padding: 30px;
   box-sizing: border-box;
 }
 
@@ -290,27 +304,28 @@ p {
   box-shadow: 0 12px 24px rgba(0,0,0,0.2);
 }
 
-.paksolve-card .card-content {
+.card-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 200px; /* adjust as needed */
 }
 
-.paksolve-card .card-description {
+.card-description {
   font-size: 1rem;
   margin: 0 0 10px 0;
+  color: #f0f0f0; /* slightly softer white */
 }
 
-.paksolve-card h3 {
+.card-content h3 {
   margin: 0 0 10px 0;
   font-size: 1.5rem;
   font-weight: bold;
+  color: #ffffff;
 }
 
-.paksolve-card .read-more {
+.read-more {
   font-size: 0.9rem;
   text-decoration: underline;
+  color: #ffffff;
   align-self: flex-start;
 }
 
