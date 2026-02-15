@@ -293,7 +293,7 @@ p {
 
 /* Overlay to soften background image */
 .card-overlay {
-  background-color: rgba(0, 100, 100, 0.8);
+  background-color: rgba(0, 100, 100, 0.4);
   width: 100%;
   height: 100%;
   display: flex;
