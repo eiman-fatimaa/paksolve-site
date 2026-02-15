@@ -648,6 +648,7 @@ button[type="submit"]:hover {
 
 #chat-messages {
   flex: 1;
+  min-height: 0;
   padding: 10px;
   overflow-y: scroll;
   background: #f4f6f8;
