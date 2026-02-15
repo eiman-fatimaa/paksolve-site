@@ -150,7 +150,7 @@ p {
   min-height: 350px;
   max-height: 500px;
 
-  background: url('images/banner.png') center center no-repeat;
+  background: url('images/banner.jpg') center center no-repeat;
   background-size: cover;
 
   display: flex;
