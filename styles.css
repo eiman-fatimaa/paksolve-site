@@ -71,6 +71,7 @@ body {
 
 .site-logo:hover {
   color: var(--color-primary-dark);
+  transform: scale(1.2); /* Zooms the image to 120% of its original size */
 }
 
 .site-nav {
@@ -195,6 +196,7 @@ p {
   height: 120px;
   object-fit: cover;
   border-radius: 50%;
+  transform: scale(1.2); /* Zooms the image to 120% of its original size */
 }
 
 /* heading */
