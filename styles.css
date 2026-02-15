@@ -327,6 +327,27 @@ p {
   text-decoration: underline;
   color: #ffffff !important;
 }
+.paksolve-card .card-overlay h2 {
+    color: #ffffff !important;
+    margin: 8px 0 5px 0;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+.paksolve-card .card-overlay,
+.paksolve-card .card-overlay p,
+.paksolve-card .card-overlay span,
+.paksolve-card .card-overlay h2 {
+    color: #ffffff !important;
+}
+.paksolve-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65); /* darker shadow */
+    z-index: 1; /* sits under text */
+    border-radius: 30px;
+}
+
 
 /* ---------- ORGANISER CARDS ---------- */
 
