@@ -607,10 +607,6 @@ button[type="submit"]:hover {
   border-radius: 6px;
   font-size: 12px;
   white-space: nowrap;
-  display: none;
-}
-
-#chatbot-icon:hover .chatbot-tooltip {
   display: block;
 }
 
@@ -622,13 +618,14 @@ button[type="submit"]:hover {
   width: 340px;
   height: 480px;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-  display: flex;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  display: none;
   flex-direction: column;
   z-index: 9999;
   overflow: hidden;
   font-family: Arial, sans-serif;
+  border: 1px solid rgba(0,0,0,0.08);
 }
 
 .chat-header {
@@ -652,10 +649,11 @@ button[type="submit"]:hover {
 #chat-messages {
   flex: 1;
   padding: 10px;
-  overflow-y: auto;
+  overflow-y: scroll;
   background: #f4f6f8;
   display: flex;
   flex-direction: column;
+  scroll-behavior: smooth;
 }
 
 .message {
