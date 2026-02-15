@@ -190,7 +190,7 @@ const faqData = [
 
 const smallTalk = [
   {
-    patterns: [/^(hi|hello|hey|salam|salaam|assalam|howdy|hiya|yo|sup|whatsup|what'?s up)[\s!?.]*$/],
+    patterns: [/^(hi|hello|hey|salam|salaam|assalam|howdy|hiya|yo|sup|whatsup|what'?s up)[\s!?.]*$/, /^hey there[\s!?.]*$/, /^hi there[\s!?.]*$/, /^hello there[\s!?.]*$/],
     response: 'Hello! 👋 Welcome to PakSolve. I\'m here to answer any questions you have about the program. Try asking about eligibility, the Fellowship, fees, how to sign up, or anything else!'
   },
   {
@@ -293,8 +293,8 @@ function scoreEntry(input, entry) {
 function getBotResponse(rawInput) {
   const input = applyAliases(normalise(rawInput));
 
-  // Reject empty / pure punctuation / gibberish
-  if (!input || /^[?!.\s]+$/.test(input) || input.length < 2) {
+  // Reject empty or pure punctuation/symbols only
+  if (!input || /^[^a-z0-9]+$/.test(input)) {
     return "I didn't quite catch that. Could you rephrase your question? 😊";
   }
 
@@ -319,8 +319,8 @@ function getBotResponse(rawInput) {
     }
   }
 
-  // Return best match only if score is confident
-  if (bestMatch && bestScore >= 2) {
+  // Return best match only if score is confident enough (threshold = 3)
+  if (bestMatch && bestScore >= 3) {
     return bestMatch.response;
   }
 
