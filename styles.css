@@ -148,9 +148,9 @@ p {
   position: relative;
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  height: 55vh;
+  height: 65vh;
   min-height: 350px;
-  max-height: 500px;
+  max-height: 550px;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
