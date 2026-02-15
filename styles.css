@@ -636,6 +636,7 @@ button[type="submit"]:hover {
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
+  border-radius: 20px 20px 0 0;
 }
 
 #chat-close {
@@ -713,7 +714,7 @@ button[type="submit"]:hover {
 }
 
 /* Force no text truncation */
-p, span, div, h1, h2, h3, h4, h5, h6, summary, a {
+p, span, h1, h2, h3, h4, h5, h6, summary, a {
   white-space: normal !important;
   overflow: visible !important;
   text-overflow: clip !important;
