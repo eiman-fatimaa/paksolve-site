@@ -1,38 +1,193 @@
 <!DOCTYPE html>
+<!-- 
+  DOCTYPE = "Document Type Declaration"
+  This MUST be the very first line of every HTML file.
+  It tells the browser: "hey, this is a modern HTML5 page"
+  Without this, some browsers go into weird "quirks mode" and display things wrong.
+-->
+
 <html lang="en">
+<!--
+  <html> is the ROOT tag — it wraps literally everything on the page.
+  Think of it as the outer box that holds all other boxes.
+  lang="en" tells the browser (and Google) that the page is in English.
+  This helps screen readers pronounce words correctly for visually impaired users.
+-->
+
 <head>
+  <!--
+    <head> is the INVISIBLE section of the page.
+    Nothing inside <head> shows up on screen.
+    It contains instructions FOR the browser — settings, links to CSS files, the tab title, etc.
+  -->
+
   <meta charset="UTF-8">
+  <!--
+    charset = "character set"
+    UTF-8 means the browser can display ALL characters — English, Urdu, emojis, everything.
+    Without this, special characters like apostrophes ' or dashes – might show up as weird symbols.
+  -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+    This makes the site MOBILE FRIENDLY.
+    "width=device-width" means: use the actual width of the phone/tablet screen, not a fake desktop width.
+    "initial-scale=1.0" means: don't zoom in or out when the page first loads.
+    Without this line, your site would look tiny and zoomed out on a phone.
+  -->
+
   <title>PakSolve – Educational Program</title>
+  <!--
+    This is the text that shows up in the browser TAB at the top.
+    Also shows up in Google search results as the blue clickable title.
+    Keep it short and descriptive.
+  -->
+
   <link rel="stylesheet" href="styles.css">
+  <!--
+    This LINKS your external CSS file to this HTML file.
+    rel="stylesheet" = "this is a stylesheet" (CSS file)
+    href="styles.css" = the path/filename of your CSS file
+    This means all the styles written in styles.css will apply to this page.
+    The CSS file must be in the SAME folder as index.html for this to work.
+  -->
+
 </head>
+
 <body>
+  <!--
+    <body> is the VISIBLE section — everything the user actually sees goes here.
+    Only one <body> tag per page.
+  -->
+
+  <!-- ============================================================
+       HEADER / NAVIGATION BAR
+       This is the bar at the top of every page with the logo + nav links.
+       It stays the same across all pages (index, faq, organisers, signup).
+       ============================================================ -->
   <header class="site-header">
+    <!--
+      <header> is a semantic tag — it tells the browser "this is the top section / navigation area".
+      class="site-header" connects this element to the CSS styles for .site-header in styles.css
+      Classes are how you link HTML elements to CSS styles.
+    -->
+
     <div class="nav-inner">
+      <!--
+        <div> is a generic box/container. It has no meaning on its own.
+        We use it to GROUP things together so we can style them as a unit.
+        class="nav-inner" is used in CSS to control the layout of the nav content (logo + links side by side).
+      -->
+
       <a href="index.html" class="site-logo">PakSolve</a>
+      <!--
+        <a> = anchor tag = a CLICKABLE LINK
+        href="index.html" = where clicking takes you (in this case, the home page)
+        The text between <a> and </a> is what the user sees and clicks.
+        class="site-logo" styles it to look like a logo, not a normal blue underlined link.
+      -->
+
       <nav class="site-nav">
+        <!--
+          <nav> is a semantic tag that means "this is a navigation menu".
+          It groups together all the page links.
+          class="site-nav" connects to CSS styles that lay the links out horizontally.
+        -->
+
         <a href="index.html" class="active">Home</a>
+        <!--
+          This links to the Home page.
+          class="active" is used in CSS to highlight the CURRENT page link
+          (e.g. make it bold or a different color so the user knows where they are).
+          Only one link should have class="active" per page.
+        -->
+
         <a href="faq.html">FAQ</a>
+        <!-- Links to the FAQ page. faq.html must exist in the same folder. -->
+
         <a href="organisers.html">Organisers</a>
+        <!-- Links to the Organisers page. -->
+
         <a href="signup.html">Sign Up</a>
+        <!-- Links to the Sign Up page. -->
+
       </nav>
     </div>
   </header>
+  <!-- End of header -->
 
+
+  <!-- ============================================================
+       MAIN CONTENT
+       Everything the user reads goes inside <main>.
+       Good for SEO — Google knows this is the important content.
+       ============================================================ -->
   <main>
+
+    <!-- ── HERO SECTION ──────────────────────────────────────────
+         The "hero" is the big banner at the TOP of the page.
+         It's the first thing users see — usually a headline, tagline, and a button.
+         ────────────────────────────────────────────────────────── -->
     <section class="hero">
+      <!--
+        <section> groups related content together — like a chapter in a book.
+        class="hero" connects to CSS styles that make this section look like a big banner
+        (probably a colored background, large text, centered layout).
+      -->
+
       <h1>Welcome to PakSolve</h1>
+      <!--
+        <h1> = Heading level 1 = the BIGGEST, most important heading on the page.
+        There should only be ONE <h1> per page.
+        Google uses it to understand what the page is about.
+        CSS in styles.css controls how large/bold it looks.
+      -->
+
       <p class="tagline">
+        <!--
+          <p> = paragraph tag. Used for any block of text.
+          class="tagline" makes this paragraph look different from normal paragraphs —
+          probably larger font size or different color, defined in styles.css.
+        -->
         A free, rigorous educational program by MIT students for Pakistani students
         to learn Math and Physics and solve fun problems together.
       </p>
-      <a href="signup.html" class="cta">REGISTER NOW</a>
+
+      <a href="signup.html" class="cta">Sign up now :D.</a>
+      <!--
+        This is the CALL TO ACTION button — the main thing you want users to click.
+        href="signup.html" = takes user to the sign up page when clicked.
+        class="cta" = CSS styles this to look like a button (background color, padding, rounded corners).
+        "cta" stands for Call To Action.
+      -->
+
     </section>
+    <!-- End of hero section -->
 
+
+    <!-- ── CARDS SECTION ─────────────────────────────────────────
+         The main body of the page — multiple content cards stacked vertically.
+         Each card is a white box with a heading and text inside.
+         ────────────────────────────────────────────────────────── -->
     <div class="main-content">
+      <!--
+        This <div> wraps all the cards together.
+        class="main-content" probably adds padding and a max-width
+        so the text doesn't stretch across the full screen on wide monitors.
+      -->
 
+      <!-- CARD 1: What is PakSolve? -->
       <div class="card">
+        <!--
+          class="card" styles this as a white rounded box with a shadow.
+          Each section of content gets its own card.
+        -->
         <h2>What is PakSolve?</h2>
+        <!--
+          <h2> = Heading level 2 = second biggest heading.
+          Used for section titles INSIDE the page.
+          h1 > h2 > h3 in terms of importance/size.
+        -->
         <p>
           The Pakistan STEM Problem Solving Talent Hunt (PakSolve for short) is a free virtual program
           for curious, ambitious Pakistani students who are interested in gaining a high-quality
@@ -42,58 +197,120 @@
           students so that you can all learn together and collaborate to solve fun, challenging problems.
         </p>
       </div>
+      <!-- End of card 1 -->
 
+
+      <!-- CARD 2: PakSolve's Mission -->
       <div class="card">
         <h2>PakSolve's Mission</h2>
         <p>
-          It’s no secret that Pakistan is very behind the rest of the world in innovation. At the same time, people constantly claim that Pakistani students have crazy high potential. This is both true and not true. It is unlikely that an average Pakistani student is born innately smarter than an average student in Japan for example. But it’s also true that our Pakistani students aren’t innately dumber than students anywhere else. Yet, the best students in Pakistan are far behind the best students abroad. This is evidence of the fact that students in Pakistan are not being given enough incentives or resources to live up to their intellectual potential. 
-          Every Organiser and instructor at PakSolve has won something at the International Physics or Math olympiads representing Pakistan and hence we are uniquely positioned to look back and think about what kind of learning environment we ourselves would have benefited from during our O level/ Matric years.Through making this program happen, we hope to achieve two central goals: 
+          It's no secret that Pakistan is very behind the rest of the world in innovation. At the same time, people constantly claim that Pakistani students have crazy high potential. This is both true and not true. It is unlikely that an average Pakistani student is born innately smarter than an average student in Japan for example. But it's also true that our Pakistani students aren't innately dumber than students anywhere else. Yet, the best students in Pakistan are far behind the best students abroad. This is evidence of the fact that students in Pakistan are not being given enough incentives or resources to live up to their intellectual potential. 
+          Every Organiser and instructor at PakSolve has won something at the International Physics or Math olympiads representing Pakistan and hence we are uniquely positioned to look back and think about what kind of learning environment we ourselves would have benefited from during our O level/ Matric years. Through making this program happen, we hope to achieve two central goals: 
         </p>
+
         <ol>
-          <li> 
-            Self learning is a vital skill to learn early on as a student. If you don’t take personal charge of your education and start learning on your own, at your own pace, and devoting extra time to ideas and subjects you are passionate about, you will always be pulled down by our very mediocre education system. We want to give a large number of students in Pakistan who demonstrate a spark in STEM a push to work on their interests in Science and Math by learning some relevant, rigorous Math and Physics and to launch their journeys on self learning and taking charge of their education.
+          <!--
+            <ol> = Ordered List = a NUMBERED list (1, 2, 3...)
+            Use <ol> when the ORDER matters.
+            Use <ul> (unordered list) when order doesn't matter — that gives bullet points.
+          -->
+
+          <li>
+            <!--
+              <li> = List Item = one item in the list.
+              Each point goes inside its own <li> tag.
+            -->
+            Self learning is a vital skill to learn early on as a student. If you don't take personal charge of your education and start learning on your own, at your own pace, and devoting extra time to ideas and subjects you are passionate about, you will always be pulled down by our very mediocre education system. We want to give a large number of students in Pakistan who demonstrate a spark in STEM a push to work on their interests in Science and Math by learning some relevant, rigorous Math and Physics and to launch their journeys on self learning and taking charge of their education.
           </li>
+
           <li>
             Inevitably, the reality of a program like this is that for every 100 students who are given a push to develop their interest in Science or Math, 70 will attend the first day of classes, 40 will continue to attend 3 weeks in, 15 will put in enough effort to learn all the course material, and 7 or 8 will go above and beyond and continue to become life long learners, devoting the rest of their high school years to deeply learning Math and Physics. Not only do we want to motivate a large number of students as described in goal (1), we also hope to inspire the creation of a smaller cohort of these ultra motivated, hard working students who will go on to become Pakistan's future innovators and scientists and will be able to represent our Country in International Science Olympiads.
           </li>
+
         </ol>
       </div>
+      <!-- End of card 2 -->
 
+
+      <!-- CARD 3: PakSolve Fellowship -->
       <div class="card">
         <h2>PakSolve Fellowship</h2>
         <p>
           In order to succeed in goal (2), a small cohort of you will be admitted to the PakSolve Fellowship. This will mean a few things. Firstly, you will be given exponentially more direct, one on one attention during this program. This direct attention will also mean that you will have room to personalise your study with PakSolve as we will be able to mold our syllabus to the specific likings and needs of Fellowship members. Secondly, we will continue to work with students who make it into the fellowship throughout their high school careers, and provide them with amazing opportunities like representing Pakistan in the International Math, Physics or Informatics Olympiads. Getting into the fellowship is a gateway into opportunities in Math, Physics and Computer Science and connections with some of today's most successful young Pakistanis.
         </p>
         <p>
+          <!-- A second paragraph inside the same card — just use another <p> tag -->
           Getting into the Fellowship DOES NOT depend only on how good you are at Math. It will be based on demonstrated effort and enthusiasm for the course as well as how much progress and mathematical growth you show throughout the program. The rationale behind this decision is to make getting into the fellowship fair for younger students and for people who enter this program with less background knowledge. If you are someone who is really good and ahead of your year group at Math and Physics: don't worry, your prior knowledge will still help you qualify, (we are looking for talent after all and it would be stupid to not try to enroll very gifted students) it just won't guarantee entry into the Fellowship without hard work and effort, and students who come into the program with less prior knowledge will be given ample opportunities to demonstrate progress and qualify with just as much certainty as you.
         </p>
       </div>
+      <!-- End of card 3 -->
 
 
+      <!-- CARD 4: Expectations -->
       <div class="card">
         <h2>Expectations We Have for You</h2>
         <p>
           This program will begin over the summer. There are some requirements to join. 
         </p>
         <ol>
+          <!-- Numbered list again because these are specific requirements -->
+
           <li>
-            You have to be willing to work very hard. This program will give you amazing resources and exposure and the chance to develop problem solving skills that will serve you for your entire future careers.  However, in order to actually benefit from the material, putting in the hours to struggle through the problems and material is a must. The problem sets for our program will not be trivial, algorithmic and computational like your school homework; they will be tough, require creative problem solving and sufficient effort to solve. We highly encourage you to apply to this program, but please only do so with the intention to work hard to learn some high level Math and Physics over this summer. 
+            You have to be willing to work very hard. This program will give you amazing resources and exposure and the chance to develop problem solving skills that will serve you for your entire future careers. However, in order to actually benefit from the material, putting in the hours to struggle through the problems and material is a must. The problem sets for our program will not be trivial, algorithmic and computational like your school homework; they will be tough, require creative problem solving and sufficient effort to solve. We highly encourage you to apply to this program, but please only do so with the intention to work hard to learn some high level Math and Physics over this summer. 
           </li>
+
           <li>
-            You MUST be a student in the 8th, 9th or 10th grade or younger if you are a Matric student or a student in the 9th, 10th or 11th grade or younger if you are an O level student in order to apply to PakSolve. If you don't meet this grade requirement, please do not try to join the program as it is not for you,  and you will be promptly removed once we ask for proof of grade. We may accept enthusiastic younger students who wish to join if they demonstrate sufficient knowledge to keep up with the material, but we will under no circumstances accept students who are in higher grades than the ones mentioned above.
+            You MUST be a student in the 8th, 9th or 10th grade or younger if you are a Matric student or a student in the 9th, 10th or 11th grade or younger if you are an O level student in order to apply to PakSolve. If you don't meet this grade requirement, please do not try to join the program as it is not for you, and you will be promptly removed once we ask for proof of grade. We may accept enthusiastic younger students who wish to join if they demonstrate sufficient knowledge to keep up with the material, but we will under no circumstances accept students who are in higher grades than the ones mentioned above.
           </li>
+
           <li>
-            Attendance is very important. Lectures will be online and you must only miss them under exceptional circumstances.  Attendance and participation will be the prime factor in selection into the PakSolve Fellowship.
+            Attendance is very important. Lectures will be online and you must only miss them under exceptional circumstances. Attendance and participation will be the prime factor in selection into the PakSolve Fellowship.
           </li>
+
         </ol>
       </div>
+      <!-- End of card 4 -->
 
     </div>
+    <!-- End of main-content div -->
+
   </main>
+  <!-- End of main -->
 
+
+  <!-- ============================================================
+       FOOTER
+       The bar at the very bottom of the page.
+       Usually contains copyright info and repeat navigation links.
+       ============================================================ -->
   <footer class="site-footer">
-    <p>&copy; PakSolve. <a href="index.html">Home</a> · <a href="faq.html">FAQ</a> · <a href="organisers.html">Organisers</a> · <a href="signup.html">Sign Up</a></p>
-  </footer>
-</body>
-</html>
+    <!--
+      <footer> is a semantic tag for the bottom section of the page.
+      class="site-footer" connects to CSS styles (dark background, small text, etc.)
+    -->
 
+    <p>
+      &copy; PakSolve.
+      <!--
+        &copy; is an HTML ENTITY — a special code for the © copyright symbol.
+        You can't just type © directly in HTML, so you use &copy; instead.
+        Other useful ones: &amp; = &    &lt; = <    &gt; = >
+      -->
+
+      <a href="index.html">Home</a> ·
+      <a href="faq.html">FAQ</a> ·
+      <a href="organisers.html">Organisers</a> ·
+      <a href="signup.html">Sign Up</a>
+      <!--
+        These are the same nav links repeated in the footer.
+        The · between them is just a text dot for decoration — it's typed directly.
+      -->
+    </p>
+  </footer>
+  <!-- End of footer -->
+
+</body>
+<!-- End of body — nothing goes after this except </html> -->
+
+</html>
+<!-- End of the entire HTML document -->
