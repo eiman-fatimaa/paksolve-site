@@ -345,7 +345,9 @@ function appendMessage(text, sender) {
   msg.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
   msg.innerHTML = text;
   messages.appendChild(msg);
-  messages.scrollTop = messages.scrollHeight;
+  requestAnimationFrame(() => {
+    messages.scrollTop = messages.scrollHeight;
+  });
 }
 
 function showTypingIndicator() {
