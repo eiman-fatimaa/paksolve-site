@@ -147,7 +147,7 @@ p {
   position: relative;
   text-align: center;
   padding: 3rem 1rem 4rem;
-  background: url('images/banner.jpg') center/cover no-repeat;
+  background: url('images/banner.png') center/cover no-repeat;
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   margin-bottom: 2rem;
   overflow: hidden;
