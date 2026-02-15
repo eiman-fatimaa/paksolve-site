@@ -253,6 +253,55 @@ p {
 .card p + p {
   margin-top: 0.9rem;
 }
+.paksolve-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.paksolve-card {
+  display: block;
+  background-color: #008080; /* teal green */
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.paksolve-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.paksolve-card .card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px; /* adjust as needed */
+}
+
+.paksolve-card .card-description {
+  font-size: 1rem;
+  margin: 0 0 10px 0;
+}
+
+.paksolve-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.paksolve-card .read-more {
+  font-size: 0.9rem;
+  text-decoration: underline;
+  align-self: flex-start;
+}
 
 /* ---------- ORGANISER CARDS ---------- */
 
