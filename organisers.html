@@ -1,37 +1,191 @@
 <!DOCTYPE html>
+<!-- Always the first line. Tells the browser this is a modern HTML5 page. -->
+
 <html lang="en">
+<!-- Root tag that wraps the entire page. lang="en" = page is in English. -->
+
 <head>
+  <!-- HEAD = invisible settings section. Nothing here shows on screen. -->
+
   <meta charset="UTF-8">
+  <!-- Allows all characters to display correctly — English, Urdu, emojis, symbols. -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Makes the page mobile-friendly. Without this it would look tiny on phones. -->
+
   <title>Organisers – PakSolve</title>
+  <!-- Text shown in the browser tab. Each page should have a unique title. -->
+
   <link rel="stylesheet" href="styles.css">
+  <!-- 
+    Loads the CSS file that styles this page.
+    href="styles.css" = the CSS file is in the same folder as this HTML file.
+    All pages on this site share the same styles.css — so they all look consistent.
+  -->
+
 </head>
+
 <body>
+  <!-- BODY = everything the user actually sees on screen goes here. -->
+
+
+  <!-- ============================================================
+       HEADER / NAV BAR
+       Exact same header used on every page of the site.
+       Copy-pasting it across pages keeps navigation consistent.
+       The only thing that changes page-to-page is which link has class="active"
+       ============================================================ -->
   <header class="site-header">
+
     <div class="nav-inner">
+      <!-- Wrapper div that holds the logo and nav links side by side -->
+
       <a href="index.html" class="site-logo">PakSolve</a>
+      <!-- Clicking the logo takes you back to the home page. Styled to not look like a regular link. -->
+
       <nav class="site-nav">
+        <!-- <nav> = semantic tag for navigation menus -->
+
         <a href="index.html">Home</a>
+        <!-- No class="active" here because this is NOT the home page -->
+
         <a href="faq.html">FAQ</a>
+
         <a href="organisers.html" class="active">Organisers</a>
+        <!--
+          class="active" is on THIS link because we ARE on the Organisers page.
+          CSS uses .active to highlight the current page link (e.g. bold or different color).
+          Every page should have class="active" on its own nav link.
+        -->
+
         <a href="signup.html">Sign Up</a>
       </nav>
     </div>
   </header>
+  <!-- End of header -->
 
+
+  <!-- ============================================================
+       MAIN CONTENT
+       Everything the user reads on this page.
+       ============================================================ -->
   <main class="main-content">
+    <!--
+      <main> = semantic tag for the primary content of the page.
+      class="main-content" adds padding/max-width from styles.css
+      so content doesn't stretch across the full screen on wide monitors.
+    -->
+
     <h1 class="page-title">Meet the Organisers</h1>
-    <p class="organisers-intro">PakSolve is run by Pakistani undergrads at MIT who have represented Pakistan at International Math and Physics Olympiads. Here’s who’s behind the program.</p>
+    <!--
+      <h1> = the biggest, most important heading. One per page.
+      class="page-title" lets CSS style this differently — maybe centered,
+      larger font, or a different color than normal h1 headings.
+    -->
 
+    <p class="organisers-intro">PakSolve is run by Pakistani undergrads at MIT who have represented Pakistan at International Math and Physics Olympiads. Here's who's behind the program.</p>
+    <!--
+      Intro paragraph that appears under the page title.
+      class="organisers-intro" lets you style this paragraph specifically —
+      for example, make it slightly larger or a different color than body text.
+    -->
+
+
+    <!-- ── ORGANISERS GRID ────────────────────────────────────────
+         A grid of cards — one card per organiser.
+         CSS grid/flexbox in styles.css makes these sit side by side
+         instead of stacking vertically.
+         To add a new organiser: copy one entire <article> block and paste it.
+         To remove one: delete one entire <article> block.
+         ────────────────────────────────────────────────────────── -->
     <div class="organisers-grid">
-      <article class="organiser-card card">
-        <div class="organiser-image-wrap">
-          <img src="images/organisers/organiser1.jpg" alt="Organiser 1" class="organiser-image" loading="lazy" onerror="this.src='https://placehold.co/280x280/e2e8f0/64748b?text=Photo'">
-        </div>
-        <h3 class="organiser-name">Organiser Name 1</h3>
-        <p class="organiser-bio">Short paragraph about this organiser—background, role in PakSolve, and a line or two about their interests or achievements.</p>
-      </article>
+      <!--
+        <div class="organisers-grid"> is the CONTAINER for all the cards.
+        styles.css uses .organisers-grid to create a multi-column layout
+        so cards sit next to each other in rows.
+      -->
 
+
+      <!-- ── ORGANISER CARD 1 ── -->
+      <article class="organiser-card card">
+        <!--
+          <article> = semantic tag for a self-contained piece of content.
+          It's like a <div> but with meaning — it says "this is a standalone item".
+          Perfect for profile cards, blog posts, news items.
+
+          class="organiser-card card" applies TWO classes at once (space-separated):
+            - "card" = the general white box style (shared with index.html cards)
+            - "organiser-card" = extra styles specific to organiser profile cards
+        -->
+
+        <div class="organiser-image-wrap">
+          <!--
+            A wrapper div around the image.
+            Useful for controlling the size/shape of the image container in CSS
+            (e.g. making it a fixed square or circle) independently of the image itself.
+          -->
+
+          <img
+            src="images/organisers/organiser1.jpg"
+            alt="Organiser 1"
+            class="organiser-image"
+            loading="lazy"
+            onerror="this.src='https://placehold.co/280x280/e2e8f0/64748b?text=Photo'"
+          >
+          <!--
+            <img> = image tag. It's a self-closing tag (no </img> needed).
+
+            src="images/organisers/organiser1.jpg"
+              = path to the image file.
+              This means there should be a folder called "images",
+              inside it a folder called "organisers",
+              inside that a file called "organiser1.jpg".
+              To add a real photo: upload the photo to that folder in your repo
+              and update this src path to match the filename.
+
+            alt="Organiser 1"
+              = alternative text shown if the image fails to load.
+              Also read aloud by screen readers for visually impaired users.
+              Replace "Organiser 1" with the person's actual name.
+
+            class="organiser-image"
+              = CSS styles for sizing/shaping the photo (e.g. circular, fixed width).
+
+            loading="lazy"
+              = the image only loads when the user scrolls near it.
+              This makes the page load faster — especially useful when there are many images.
+
+            onerror="this.src='https://placehold.co/...'"
+              = JavaScript that runs IF the image fails to load.
+              "this" refers to this <img> element.
+              "this.src = ..." replaces the broken image with a grey placeholder.
+              So instead of a broken image icon, users see a grey box that says "Photo".
+              You can delete this line once you have real photos.
+          -->
+        </div>
+        <!-- End of image wrapper -->
+
+        <h3 class="organiser-name">Organiser Name 1</h3>
+        <!--
+          <h3> = heading level 3 (smaller than h2, bigger than h4).
+          Used for the person's name inside the card.
+          Replace "Organiser Name 1" with the actual person's name.
+          class="organiser-name" lets CSS style names specifically (e.g. bold, teal color).
+        -->
+
+        <p class="organiser-bio">Short paragraph about this organiser—background, role in PakSolve, and a line or two about their interests or achievements.</p>
+        <!--
+          The organiser's short bio paragraph.
+          Replace the placeholder text with the real bio.
+          class="organiser-bio" lets CSS control font size, color, line spacing for bios.
+        -->
+
+      </article>
+      <!-- End of organiser card 1 -->
+
+
+      <!-- ── ORGANISER CARD 2 ── -->
+      <!-- Same structure as card 1. Change src, alt, name, and bio for each person. -->
       <article class="organiser-card card">
         <div class="organiser-image-wrap">
           <img src="images/organisers/organiser2.jpg" alt="Organiser 2" class="organiser-image" loading="lazy" onerror="this.src='https://placehold.co/280x280/e2e8f0/64748b?text=Photo'">
@@ -40,6 +194,8 @@
         <p class="organiser-bio">Short paragraph about this organiser—background, role in PakSolve, and a line or two about their interests or achievements.</p>
       </article>
 
+
+      <!-- ── ORGANISER CARD 3 ── -->
       <article class="organiser-card card">
         <div class="organiser-image-wrap">
           <img src="images/organisers/organiser3.jpg" alt="Organiser 3" class="organiser-image" loading="lazy" onerror="this.src='https://placehold.co/280x280/e2e8f0/64748b?text=Photo'">
@@ -48,6 +204,8 @@
         <p class="organiser-bio">Short paragraph about this organiser—background, role in PakSolve, and a line or two about their interests or achievements.</p>
       </article>
 
+
+      <!-- ── ORGANISER CARD 4 ── -->
       <article class="organiser-card card">
         <div class="organiser-image-wrap">
           <img src="images/organisers/organiser4.jpg" alt="Organiser 4" class="organiser-image" loading="lazy" onerror="this.src='https://placehold.co/280x280/e2e8f0/64748b?text=Photo'">
@@ -56,6 +214,8 @@
         <p class="organiser-bio">Short paragraph about this organiser—background, role in PakSolve, and a line or two about their interests or achievements.</p>
       </article>
 
+
+      <!-- ── ORGANISER CARD 5 ── -->
       <article class="organiser-card card">
         <div class="organiser-image-wrap">
           <img src="images/organisers/organiser5.jpg" alt="Organiser 5" class="organiser-image" loading="lazy" onerror="this.src='https://placehold.co/280x280/e2e8f0/64748b?text=Photo'">
@@ -64,6 +224,8 @@
         <p class="organiser-bio">Short paragraph about this organiser—background, role in PakSolve, and a line or two about their interests or achievements.</p>
       </article>
 
+
+      <!-- ── ORGANISER CARD 6 ── -->
       <article class="organiser-card card">
         <div class="organiser-image-wrap">
           <img src="images/organisers/organiser6.jpg" alt="Organiser 6" class="organiser-image" loading="lazy" onerror="this.src='https://placehold.co/280x280/e2e8f0/64748b?text=Photo'">
@@ -71,11 +233,36 @@
         <h3 class="organiser-name">Organiser Name 6</h3>
         <p class="organiser-bio">Short paragraph about this organiser—background, role in PakSolve, and a line or two about their interests or achievements.</p>
       </article>
-    </div>
-  </main>
+      <!--
+        TO ADD A 7TH ORGANISER: copy the entire block from
+        <article class="organiser-card card"> to </article>
+        and paste it here, then update the image src, alt, name, and bio.
+      -->
 
+    </div>
+    <!-- End of organisers-grid -->
+
+  </main>
+  <!-- End of main content -->
+
+
+  <!-- ============================================================
+       FOOTER
+       Same footer used on every page. Just copyright + nav links.
+       ============================================================ -->
   <footer class="site-footer">
-    <p>&copy; PakSolve. <a href="index.html">Home</a> · <a href="faq.html">FAQ</a> · <a href="organisers.html">Organisers</a> · <a href="signup.html">Sign Up</a></p>
+    <p>
+      &copy; PakSolve.
+      <!-- &copy; is the HTML code for the © copyright symbol -->
+
+      <a href="index.html">Home</a> ·
+      <a href="faq.html">FAQ</a> ·
+      <a href="organisers.html">Organisers</a> ·
+      <a href="signup.html">Sign Up</a>
+      <!-- · is just a plain text dot used as a visual separator between links -->
+    </p>
   </footer>
+  <!-- End of footer -->
+
 </body>
 </html>
