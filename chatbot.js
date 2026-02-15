@@ -64,9 +64,53 @@ const faqData = [
       /am i (eligible|allowed|able to join)/,
       /age (limit|requirement|restrict)/,
       /too (old|young)/,
-      /older student|higher grade|younger student/
+      /older student|higher grade|younger student/,
+      /\b(fsc|f\.sc|intermediate|inter)\b/,
+      /\b(a.?level|as.?level|a2)\b/,
+      /gap year/,
+      /\b12th\b|\btwelfth\b/,
+      /girls?|female|women|woman|sisters?/,
+      /outside pakistan|abroad|international|overseas|foreign/,
+      /\b7th\b|\bseventh\b|\b6th\b|\bsixth\b/
     ],
-    response: 'You MUST be in <strong>8th–10th grade (Matric)</strong> or <strong>9th–11th grade (O Levels)</strong> or younger to apply. We may accept exceptional younger students. Students in higher grades will not be accepted and may be removed after grade verification.'
+    response: 'Eligibility depends on your grade/system:<br><br>• <strong>Matric:</strong> 8th, 9th, or 10th grade ✅<br>• <strong>O Levels:</strong> 9th, 10th, or 11th grade (AS year) ✅<br>• <strong>FSc:</strong> 1st year only ✅<br>• <strong>A Levels:</strong> AS year only ✅<br>• <strong>Gap year / 12th grade / A2:</strong> Not eligible ❌<br>• <strong>Younger students:</strong> Welcome if they can keep up ✅<br>• <strong>Girls:</strong> Strongly encouraged to apply 💚<br>• <strong>Outside Pakistan:</strong> Pakistani students anywhere in the world can apply ✅'
+  },
+  {
+    id: 'device',
+    keywords: ['do i need a laptop', 'what device', 'need a computer', 'mobile phone', 'smartphone'],
+    patterns: [
+      /laptop|computer|pc|device|gadget/,
+      /can i use (a )?(phone|mobile|tablet|ipad)/,
+      /do i need (a )?(laptop|computer|device)/,
+      /what (device|equipment) do i need/,
+      /phone enough|mobile enough/,
+      /\bphone\b.*\bwork\b|\bphone\b.*\bok\b|\bphone\b.*\bfine\b/,
+      /use (my )?(phone|mobile)/
+    ],
+    response: 'You don\'t need a laptop — <strong>a mobile phone with internet is enough</strong> to participate in PakSolve.'
+  },
+  {
+    id: 'language',
+    keywords: ['what language', 'urdu or english', 'lectures in urdu', 'lectures in english', 'taught in'],
+    patterns: [
+      /what language/,
+      /urdu or english|english or urdu/,
+      /(lecture|class|taught|conducted) in (urdu|english)/,
+      /\b(urdu|english)\b/
+    ],
+    response: 'Lectures are conducted in <strong>Urdu or English</strong> — both are used to make sure everyone can follow along comfortably.'
+  },
+  {
+    id: 'location',
+    keywords: ['which city', 'only for karachi', 'only for lahore', 'only for punjab', 'which province', 'where is it', 'karachi', 'lahore', 'islamabad', 'peshawar', 'quetta', 'rawalpindi'],
+    patterns: [
+      /which (city|province|area|region)/,
+      /only for (karachi|lahore|islamabad|punjab|sindh|kpk|balochistan)/,
+      /\b(karachi|lahore|islamabad|rawalpindi|peshawar|quetta)\b/,
+      /is it (available|open) (everywhere|all over pakistan|nationwide)/,
+      /any city|every city|all cities/
+    ],
+    response: 'PakSolve is <strong>open to all Pakistani students everywhere</strong> — it doesn\'t matter which city or province you are from. It is a fully virtual program.'
   },
   {
     id: 'free',
@@ -117,6 +161,34 @@ const faqData = [
       /get (into|in) the fellowship/
     ],
     response: 'Selection into the Fellowship does <strong>NOT</strong> depend only on how good you are at Math. It is based on <strong>demonstrated effort, enthusiasm, growth, and progress</strong> during the program. Prior knowledge helps but does not guarantee entry — attitude and hard work matter most.'
+  },
+  {
+    id: 'olympiad_entry',
+    keywords: ['does this guarantee olympiad', 'will i represent pakistan', 'olympiad selection', 'prior olympiad experience', 'do i need experience'],
+    patterns: [
+      /guarantee (olympiad|selection|entry)/,
+      /will (i|this) (get me into|guarantee|secure) (olympiad|selection)/,
+      /entry (to|into|for) (olympiad|imo|ipho|ioi)/,
+      /prior (olympiad|experience)/,
+      /do i need (experience|background|prior knowledge)/,
+      /\b(imo|ipho|ioi)\b/,
+      /represent pakistan/,
+      /olympiad (ticket|entry|card|guarantee)/
+    ],
+    response: 'PakSolve <strong>trains you in problem solving, Math, and Physics</strong> — but it is not a direct entry card to olympiad selection. It builds the skills and foundation you need. Students who excel may receive support toward representing Pakistan, but selection depends on performance in the relevant olympiad trials.'
+  },
+  {
+    id: 'university',
+    keywords: ['help with university', 'university admissions', 'college applications', 'help with admissions', 'will this help for university'],
+    patterns: [
+      /university (admission|application|help)/,
+      /college (admission|application|help)/,
+      /help (with|for) (university|college|admissions)/,
+      /will this help (me get into|with|for) university/,
+      /\b(lums|nust|aga khan|fast|mit|harvard|cambridge|oxford)\b/,
+      /boost (my )?(application|admissions|profile)/
+    ],
+    response: 'PakSolve itself is not a university prep program. However, if you go on to <strong>perform well in International Olympiads</strong> after developing your skills here, it can massively boost your university applications — olympiad achievements are highly valued by top universities worldwide.'
   },
   {
     id: 'attendance',
@@ -190,7 +262,12 @@ const faqData = [
 
 const smallTalk = [
   {
-    patterns: [/^(hi|hello|hey|salam|salaam|assalam|howdy|hiya|yo|sup|whatsup|what'?s up)[\s!?.]*$/, /^hey there[\s!?.]*$/, /^hi there[\s!?.]*$/, /^hello there[\s!?.]*$/],
+    patterns: [
+      /^(hi|hello|hey|salam|salaam|assalam|howdy|hiya|yo|sup|whatsup|what'?s up)[\s!?.]*$/,
+      /^hey there[\s!?.]*$/,
+      /^hi there[\s!?.]*$/,
+      /^hello there[\s!?.]*$/
+    ],
     response: 'Hello! 👋 Welcome to PakSolve. I\'m here to answer any questions you have about the program. Try asking about eligibility, the Fellowship, fees, how to sign up, or anything else!'
   },
   {
@@ -250,6 +327,9 @@ const aliases = [
   [/\bmaths?\b/g,            'math'],
   [/\bmatric(ulation)?\b/g,  'matric'],
   [/\bo\.?\s?level\w*/g,     'o level'],
+  [/\bfsc\b|\bf\.sc\b|\binter\b|\bintermediate\b/g, 'fsc'],
+  [/\ba\.?\s?levels?\b/g,    'a level'],
+  [/\bas\s?level\b/g,        'as level'],
   [/\bkab\b/g,               'when'],
   [/\bkaise\b/g,             'how'],
   [/\bkya\b/g,               'what'],
@@ -261,6 +341,8 @@ const aliases = [
   [/\bjoin karna\b/g,        'how to join'],
   [/\bapply karna\b/g,       'how to apply'],
   [/\bshuru\b/g,             'start'],
+  [/\bgap year\b/g,          'gap year'],
+  [/\babroad\b|\boverseas\b/, 'outside pakistan'],
 ];
 
 function applyAliases(text) {
@@ -298,7 +380,7 @@ function getBotResponse(rawInput) {
     return "I didn't quite catch that. Could you rephrase your question? 😊";
   }
 
-  // Small talk check (exact short phrases)
+  // Small talk check
   for (const item of smallTalk) {
     for (const pattern of item.patterns) {
       if (pattern.test(input)) {
@@ -319,20 +401,20 @@ function getBotResponse(rawInput) {
     }
   }
 
-  // Return best match only if score is confident enough (threshold = 3)
   if (bestMatch && bestScore >= 3) {
     return bestMatch.response;
   }
 
-  // Fallback with suggestion menu
+  // Fallback
   return "I'm not sure about that. Here's what I can help with:" +
     "<ul style='margin:6px 0 0 0; padding-left:18px;'>" +
-    "<li>Eligibility &amp; grades</li>" +
+    "<li>Eligibility &amp; grades (Matric, O Level, FSc, A Level)</li>" +
     "<li>The Fellowship</li>" +
     "<li>Fees &amp; cost</li>" +
     "<li>How to sign up</li>" +
     "<li>Attendance &amp; schedule</li>" +
     "<li>What subjects are covered</li>" +
+    "<li>Device &amp; language requirements</li>" +
     "</ul>" +
     "Or visit our <a href='faq.html' style='color:#0f766e;'>FAQ page</a>!";
 }
@@ -379,8 +461,26 @@ function handleSend() {
   showTypingIndicator();
   setTimeout(() => {
     removeTypingIndicator();
-    appendMessage(getBotResponse(text), 'bot');
+    const response = getBotResponse(text);
+    appendMessage(response, 'bot');
+    logToSheet(text, response);
   }, 400);
+}
+
+// ── GOOGLE SHEETS LOGGER ──
+
+function logToSheet(question, response) {
+  const SHEET_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
+  if (SHEET_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') return; // skip if not configured
+  fetch(SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      question: question,
+      response: response.replace(/<[^>]+>/g, '')
+    })
+  }).catch(() => {});
 }
 
 // ── INIT ──
