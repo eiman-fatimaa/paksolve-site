@@ -104,21 +104,54 @@ var fallback = 'I’m not fully sure what you mean. You can ask about: <em>What 
     return fallback;
   }
 
-  window.initChatbot = function () {
-    var input = document.getElementById('chat-input');
-    var messages = document.getElementById('chat-messages');
-    var send = document.getElementById('chat-send');
+ window.initChatbot = function () {
 
-    function addMessage(text, isUser) {
-      var div = document.createElement('div');
-      div.style.margin = '6px 0';
-      div.style.textAlign = isUser ? 'right' : 'left';
-      div.innerHTML = isUser
-        ? '<strong>You:</strong> ' + text
-        : '<strong>PakSolve:</strong> ' + text;
-      messages.appendChild(div);
-      messages.scrollTop = messages.scrollHeight;
+  var icon = document.getElementById('chatbot-icon');
+  var windowBox = document.getElementById('chatbot-window');
+  var closeBtn = document.getElementById('chat-close');
+  var input = document.getElementById('chat-input');
+  var messages = document.getElementById('chat-messages');
+  var send = document.getElementById('chat-send');
+
+  icon.onclick = function () {
+    icon.style.display = 'none';
+    windowBox.style.display = 'flex';
+  };
+
+  closeBtn.onclick = function () {
+    windowBox.style.display = 'none';
+    icon.style.display = 'block';
+  };
+
+  function addMessage(text, isUser) {
+    var div = document.createElement('div');
+    div.classList.add('message');
+    div.classList.add(isUser ? 'user-message' : 'bot-message');
+    div.innerHTML = text;
+    messages.appendChild(div);
+
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  send.onclick = function () {
+    var text = input.value.trim();
+    if (!text) return;
+
+    input.value = '';
+    addMessage(text, true);
+
+    setTimeout(function () {
+      var reply = getResponse(text);
+      addMessage(reply, false);
+    }, 400);
+  };
+
+  input.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      send.click();
     }
+  });
+};
 
     send.onclick = function () {
       var text = input.value.trim();
