@@ -141,15 +141,39 @@ p {
   margin-bottom: 0.9rem;
 }
 
-/* ---------- HERO ---------- */
+//* ---------- HERO ---------- */
 
 .hero {
+  position: relative;
   text-align: center;
   padding: 3rem 1rem 4rem;
-  background: linear-gradient(180deg, var(--color-card) 0%, var(--color-bg) 100%);
+  background: url('images/banner.jpg') center/cover no-repeat;
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   margin-bottom: 2rem;
+  overflow: hidden;
+
+  /* responsive height + vertical centering */
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
+/* translucent dark overlay */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* keeps logo + text above overlay */
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* logo */
 
 .hero-logo {
   margin-bottom: 1.25rem;
@@ -164,17 +188,24 @@ p {
   border-radius: 50%;
 }
 
+/* heading */
+
 .hero h1 {
   font-size: 2.25rem;
   margin-bottom: 0.75rem;
+  color: white;
 }
+
+/* tagline */
 
 .hero .tagline {
   font-size: 1.15rem;
-  color: var(--color-text-muted);
+  color: rgba(255,255,255,0.85);
   max-width: 540px;
   margin: 0 auto 1.5rem;
 }
+
+/* CTA button */
 
 .hero .cta {
   display: inline-block;
@@ -191,6 +222,7 @@ p {
   background: var(--color-primary-dark);
   transform: translateY(-1px);
 }
+
 
 /* ---------- CARDS ---------- */
 
