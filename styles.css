@@ -145,10 +145,15 @@ p {
 
 .hero {
   position: relative;
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   height: 55vh;
   min-height: 350px;
   max-height: 500px;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 
   background: url('images/banner.jpg') center center no-repeat;
   background-size: cover;
