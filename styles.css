@@ -118,6 +118,15 @@ p {
   max-height: none !important;
 }
 
+.card ol {
+  padding-left: 1.3rem;
+}
+
+.card li {
+  margin-bottom: 0.9rem;
+}
+
+
 /* ---------- HERO ---------- */
 
 .hero {
