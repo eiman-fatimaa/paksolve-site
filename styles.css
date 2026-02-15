@@ -272,17 +272,18 @@ p {
 }
 
 .paksolve-card {
-  flex: 1 1 45%;         /* side by side, each takes ~45% width */
-  min-width: 280px;      /* prevent shrinking too small */
+  flex: 1 1 45%;
+  min-width: 280px;
   height: 300px;
-  border-radius: 20px;
-  overflow: hidden;
+  border-radius: 30px; /* round corners */
+  overflow: hidden;    /* clip child content to match border-radius */
   position: relative;
   text-decoration: none;
   color: #ffffff;
   background-size: cover;
   background-position: center;
   transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2); /* shadow follows rounded corners */
 }
 
 .paksolve-card:hover {
@@ -292,7 +293,7 @@ p {
 
 /* Overlay to soften background image */
 .card-overlay {
-  background-color: rgba(0, 128, 128, 0.6); /* soft teal */
+  background-color: rgba(0, 100, 100, 0.8);
   width: 100%;
   height: 100%;
   display: flex;
