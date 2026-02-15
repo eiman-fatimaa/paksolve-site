@@ -262,15 +262,26 @@ p {
   margin: 0 auto;
 }
 
+/* ---------- PAKSOLVE CARDS ---------- */
+.paksolve-cards {
+  display: flex;
+  flex-direction: row; /* horizontal layout */
+  gap: 30px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
 .paksolve-card {
-  display: block;
+  flex: 1; /* each card takes equal space */
+  min-width: 280px; /* prevent too small on mobile */
   background-color: #008080; /* teal green */
   color: #ffffff;
   border-radius: 20px;
   padding: 40px 30px;
   text-decoration: none;
   transition: transform 0.2s, box-shadow 0.2s;
-  width: 100%;
   box-sizing: border-box;
 }
 
