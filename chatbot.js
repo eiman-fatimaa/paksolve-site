@@ -146,11 +146,10 @@ var fallback = 'I’m not fully sure what you mean. You can ask about: <em>What 
     }, 400);
   };
 
-  input.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-      send.click();
-    }
-  });
+  document.addEventListener('DOMContentLoaded', function() {
+    initChatbot();
+});
+   
 };
 
     send.onclick = function () {
