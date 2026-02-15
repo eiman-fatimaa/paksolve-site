@@ -255,60 +255,61 @@ p {
 }
 /* ---------- PAKSOLVE CARDS ---------- */
 
+/* ---------- PAKSOLVE CARDS (FULL RESPONSIVE) ---------- */
+
 .paksolve-cards {
   display: flex;
-  flex-wrap: wrap;       /* allows stacking on small screens */
-  gap: 30px;
-  padding: 40px 20px;
+  flex-wrap: wrap;          /* allows stacking on small screens */
+  justify-content: center;   /* center cards horizontally */
+  gap: 20px;                 /* space between cards */
+  padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .paksolve-card {
-  flex: 1 1 45%;          /* roughly two cards per row */
-  min-width: 280px;
-  height: 300px;
+  flex: 1 1 300px;           /* base width, flexible growth/shrink */
+  max-width: 45%;             /* roughly 2 per row on medium screens */
+  min-width: 250px;           /* don’t get too small */
+  aspect-ratio: 4/3;          /* keeps height proportional to width */
   position: relative;
-  border-radius: 30px;     /* rounded corners */
-  overflow: hidden;        /* clip overlay and image */
+  border-radius: 30px;        /* rounded corners */
+  overflow: hidden;           /* clip overlay & image */
   text-decoration: none;
   color: #ffffff;
   background-size: cover;
   background-position: center;
   transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.2); /* shadow follows rounded corners */
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
 }
 
-/* Hover effect */
 .paksolve-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 16px 32px rgba(0,0,0,0.25);
 }
 
-/* Dark overlay over image */
+/* Dark overlay to improve text readability */
 .paksolve-card::before {
   content: "";
   position: absolute;
-  inset: 0; /* top:0; right:0; bottom:0; left:0 */
-  background: rgba(0,0,0,0.2); /* dark shadow for text visibility */
+  inset: 0;                  /* top:0; right:0; bottom:0; left:0 */
+  background: rgba(0,0,0,0.2);
+  border-radius: inherit;
   z-index: 1;
-  border-radius: 30px;  /* match card */
 }
 
-/* Content sits above overlay */
+/* Card content above overlay */
 .card-overlay {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* top paragraph + bottom heading */
+  justify-content: space-between; /* top content + bottom heading */
   height: 100%;
-  padding: 20px;
+  padding: 15px;
   box-sizing: border-box;
-  color: #ffffff !important;
 }
 
-/* Paragraph at the top */
 .card-top {
   flex: 1;
   overflow: hidden;
@@ -321,7 +322,6 @@ p {
   color: #ffffff !important;
 }
 
-/* Bottom heading + divider */
 .card-bottom {
   text-align: left;
 }
@@ -344,17 +344,32 @@ p {
   text-decoration: underline;
   color: #ffffff !important;
 }
-.paksolve-card .card-overlay h2 {
-    color: #ffffff !important;
-    margin: 8px 0 5px 0;
-    font-size: 1.4rem;
-    font-weight: bold;
-}
+
+/* Force white text on all overlay elements */
 .paksolve-card .card-overlay,
 .paksolve-card .card-overlay p,
 .paksolve-card .card-overlay span,
 .paksolve-card .card-overlay h2 {
-    color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* ---------- MOBILE & SMALL SCREENS ---------- */
+
+@media (max-width: 768px) {
+  .paksolve-card {
+    max-width: 100%;      /* single column on tablets/small screens */
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .paksolve-cards {
+    gap: 15px;
+    padding: 15px;
+  }
+  .paksolve-card {
+    aspect-ratio: auto;    /* allow variable height if needed */
+  }
 }
 
 
