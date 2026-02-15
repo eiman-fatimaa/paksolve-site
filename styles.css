@@ -236,6 +236,23 @@ p {
 
 
 /* ---------- CARDS ---------- */
+.card {
+  background: var(--color-card);
+  padding: 1.6rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+
+.card h2 {
+  color: var(--color-primary);
+  margin-bottom: 0.6rem;
+}
+
+/* better readability for long sections */
+.card p + p {
+  margin-top: 0.9rem;
+}
 /* ---------- PAKSOLVE CARDS ---------- */
 
 .paksolve-cards {
@@ -273,7 +290,7 @@ p {
   content: "";
   position: absolute;
   inset: 0; /* top:0; right:0; bottom:0; left:0 */
-  background: rgba(0,0,0,0.6); /* dark shadow for text visibility */
+  background: rgba(0,0,0,0.2); /* dark shadow for text visibility */
   z-index: 1;
   border-radius: 30px;  /* match card */
 }
