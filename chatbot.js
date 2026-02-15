@@ -1,7 +1,35 @@
-(function () {
+window.initChatbot = function () {
+    const icon = document.getElementById('chatbot-icon');
+    const windowBox = document.getElementById('chatbot-window');
+    const closeBtn = document.getElementById('chat-close');
+    const input = document.getElementById('chat-input');
+    const messages = document.getElementById('chat-messages');
+    const send = document.getElementById('chat-send');
 
-  var documents = [
-   {
+    // Show chat window
+    icon.addEventListener('click', () => {
+        icon.style.display = 'none';
+        windowBox.style.display = 'flex';
+        input.focus();
+    });
+
+    // Close chat window
+    closeBtn.addEventListener('click', () => {
+        windowBox.style.display = 'none';
+        icon.style.display = 'block';
+    });
+
+    function addMessage(text, isUser) {
+        const div = document.createElement('div');
+        div.classList.add('message', isUser ? 'user-message' : 'bot-message');
+        div.innerHTML = text;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    // Your full documents array goes here (copy-paste your original)
+    var documents = [
+        {
     content: 'what is paksolve pakistan stem problem solving talent hunt free virtual program curious ambitious pakistani students math science education mit olympiads community challenging problems',
     response: '<strong>PakSolve (Pakistan STEM Problem Solving Talent Hunt)</strong> is a <strong>free virtual program</strong> for curious, ambitious Pakistani students interested in high-quality Math and Science education. You are taught by MIT students and Pakistanis who have represented Pakistan at International Math and Physics Olympiads. You also join a community of like-minded students solving fun, challenging problems together.'
   },
@@ -60,109 +88,55 @@
     content: 'contact email whatsapp reach out',
     response: 'After signing up, we contact you using the information you provide. You can also check the website footer for contact options.'
   }
-  ];
+            
+        // ... rest of your original questions here
+    ];
 
-var fallback = 'I’m not fully sure what you mean. You can ask about: <em>What is PakSolve?</em> <em>Mission</em> <em>Eligibility</em> <em>Fellowship</em> <em>Expectations</em> <em>Is it free?</em> <em>How to sign up?</em>';
-  function tokenize(text) {
-    return (text || '')
-      .toLowerCase()
-      .replace(/[^\w\s]/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim()
-      .split(' ');
-  }
+    var fallback = 'I’m not fully sure what you mean. You can ask about: <em>What is PakSolve?</em> <em>Mission</em> <em>Eligibility</em> <em>Fellowship</em> <em>Expectations</em> <em>Is it free?</em> <em>How to sign up?</em>';
 
-  function getResponse(query) {
-    var q = query.toLowerCase();
-    var words = tokenize(q);
+    function getResponse(query) {
+        var q = query.toLowerCase();
+        var words = q.replace(/[^\w\s]/g, ' ').split(/\s+/);
+        var best = { index: -1, score: 0 };
 
-    var best = { index: -1, score: 0 };
+        for (var d = 0; d < documents.length; d++) {
+            var docContent = documents[d].content;
+            var score = 0;
 
-    for (var d = 0; d < documents.length; d++) {
-      var docContent = documents[d].content;
-      var score = 0;
+            if (docContent.indexOf(q) !== -1) score += 5;
 
-      if (docContent.indexOf(q) !== -1) score += 5;
+            for (var w = 0; w < words.length; w++) {
+                if (docContent.indexOf(words[w]) !== -1) {
+                    score += words[w].length > 4 ? 2 : 1;
+                }
+            }
 
-      for (var w = 0; w < words.length; w++) {
-        if (docContent.indexOf(words[w]) !== -1) {
-          if (words[w].length > 4) score += 2;
-          else score += 1;
+            if (score > best.score) {
+                best.score = score;
+                best.index = d;
+            }
         }
-      }
 
-      if (score > best.score) {
-        best.score = score;
-        best.index = d;
-      }
+        if (best.index >= 0 && best.score > 0) return documents[best.index].response;
+        return fallback;
     }
 
-    if (best.index >= 0 && best.score > 0) {
-      return documents[best.index].response;
-    }
+    send.addEventListener('click', () => {
+        var text = input.value.trim();
+        if (!text) return;
+        input.value = '';
+        addMessage(text, true);
+        setTimeout(() => {
+            var reply = getResponse(text);
+            addMessage(reply, false);
+        }, 400);
+    });
 
-    return fallback;
-  }
-
- window.initChatbot = function () {
-
-  var icon = document.getElementById('chatbot-icon');
-  var windowBox = document.getElementById('chatbot-window');
-  var closeBtn = document.getElementById('chat-close');
-  var input = document.getElementById('chat-input');
-  var messages = document.getElementById('chat-messages');
-  var send = document.getElementById('chat-send');
-
-  icon.onclick = function () {
-    icon.style.display = 'none';
-    windowBox.style.display = 'flex';
-  };
-
-  closeBtn.onclick = function () {
-    windowBox.style.display = 'none';
-    icon.style.display = 'block';
-  };
-
-  function addMessage(text, isUser) {
-    var div = document.createElement('div');
-    div.classList.add('message');
-    div.classList.add(isUser ? 'user-message' : 'bot-message');
-    div.innerHTML = text;
-    messages.appendChild(div);
-
-    messages.scrollTop = messages.scrollHeight;
-  }
-
-  send.onclick = function () {
-    var text = input.value.trim();
-    if (!text) return;
-
-    input.value = '';
-    addMessage(text, true);
-
-    setTimeout(function () {
-      var reply = getResponse(text);
-      addMessage(reply, false);
-    }, 400);
-  };
-
-  document.addEventListener('DOMContentLoaded', function() {
-    initChatbot();
-});
-   
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') send.click();
+    });
 };
 
-    send.onclick = function () {
-      var text = input.value.trim();
-      if (!text) return;
-      input.value = '';
-      addMessage(text, true);
+document.addEventListener('DOMContentLoaded', initChatbot);
 
-      setTimeout(function () {
-        var reply = getResponse(text);
-        addMessage(reply, false);
-      }, 500);
-    };
-  };
-
-})();
+  
