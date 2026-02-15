@@ -1,105 +1,151 @@
-/* PakSolve – Educational Program Website */
+/* ================================================================
+   PakSolve – Main Stylesheet (styles.css)
+   ================================================================ */
+
+
+/* ── CSS VARIABLES ──────────────────────────────────────────────
+   Store colors, fonts, shadows here once.
+   Change a variable here and it updates everywhere on the site.
+   ────────────────────────────────────────────────────────────── */
 
 :root {
-  --color-primary: #0f766e;
-  --color-primary-dark: #0d9488;
-  --color-accent: #f59e0b;
-  --color-bg: #f8fafc;
-  --color-card: #ffffff;
-  --color-text: #1e293b;
-  --color-text-muted: #64748b;
-  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-heading: "Georgia", "Times New Roman", serif;
-  --shadow: 0 1px 3px rgba(0,0,0,0.08);
-  --shadow-lg: 0 10px 40px rgba(15,118,110,0.12);
-  --radius: 8px;
-  --radius-lg: 12px;
+  --color-primary: #0f766e;        /* Main teal/green — used for buttons, links, headings */
+  --color-primary-dark: #0d9488;   /* Slightly lighter green for hover states */
+  --color-accent: #f59e0b;         /* Amber — available for highlights */
+  --color-bg: #f8fafc;             /* Very light grey page background */
+  --color-card: #ffffff;           /* White — used for cards and nav bar */
+  --color-text: #1e293b;           /* Dark navy — main text color */
+  --color-text-muted: #64748b;     /* Medium grey — secondary/footer text */
+  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif; /* Body font */
+  --font-heading: "Georgia", "Times New Roman", serif;            /* Heading font */
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);                          /* Subtle card shadow */
+  --shadow-lg: 0 10px 40px rgba(15,118,110,0.12);                /* Larger tinted shadow */
+  --radius: 8px;                   /* Small border radius for buttons */
+  --radius-lg: 12px;               /* Larger border radius for cards */
 }
+
+
+/* ── RESET ──────────────────────────────────────────────────────
+   Applied to every element. Prevents unexpected sizing issues.
+   ────────────────────────────────────────────────────────────── */
 
 * { box-sizing: border-box; }
+/* border-box = padding is included in element width, not added on top */
 
 html { scroll-behavior: smooth; }
+/* Smooth animated scroll when jumping to page sections */
+
+
+/* ── BODY ───────────────────────────────────────────────────────
+   Default styles for the entire page.
+   ────────────────────────────────────────────────────────────── */
 
 body {
-  margin: 0;
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--color-text);
-  background: var(--color-bg);
+  margin: 0;                        /* Remove default browser margin */
+  font-family: var(--font-sans);    /* System font — no download needed */
+  font-size: 1rem;                  /* 16px base size */
+  line-height: 1.6;                 /* Comfortable reading line spacing */
+  color: var(--color-text);         /* Dark text throughout */
+  background: var(--color-bg);      /* Light grey page background */
 }
 
-/* ---------- NAV ---------- */
+
+/* ── NAVIGATION BAR ─────────────────────────────────────────────
+   Sticky bar at the top that follows as you scroll.
+   ────────────────────────────────────────────────────────────── */
 
 .site-header {
-  background: var(--color-card);
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  background: var(--color-card);    /* White background */
+  box-shadow: var(--shadow);        /* Faint shadow — looks elevated */
+  position: sticky;                 /* Sticks to top when scrolling */
+  top: 0;                           /* Sticks at 0px from top */
+  z-index: 100;                     /* Appears in front of all page content */
 }
 
 .nav-inner {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
+  max-width: 960px;                 /* Content doesn't stretch on wide screens */
+  margin: 0 auto;                   /* Centers the nav content */
+  padding: 1rem 1.5rem;             /* Inner spacing */
+  display: flex;                    /* Logo and links side by side */
+  align-items: center;              /* Vertically centered */
+  justify-content: space-between;   /* Logo left, links right */
+  flex-wrap: wrap;                  /* Wraps to new line on small screens */
+  gap: 1rem;                        /* Space between logo and links */
 }
 
 .site-logo {
-  font-family: var(--font-heading);
+  display: flex;                    /* Logo image + text side by side */
+  align-items: center;              /* Vertically centered */
+  gap: 0.5rem;                      /* Space between image and text */
+  font-family: var(--font-heading); /* Serif font for brand feel */
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-primary);
-  text-decoration: none;
+  color: var(--color-primary);      /* Teal color */
+  text-decoration: none;            /* No underline */
+}
+
+.site-logo-img {
+  /* The small circular PS logo image in the nav bar */
+  display: block;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;                /* Crops image to fill circle, no distortion */
+  border-radius: 50%;               /* Makes it a circle */
+}
+
+.site-logo:hover {
+  color: var(--color-primary-dark); /* Slightly different teal on hover */
 }
 
 .site-nav {
-  display: flex;
+  display: flex;                    /* Nav links side by side */
   gap: 0.5rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap;                  /* Wraps on small screens */
 }
 
 .site-nav a {
   color: var(--color-text);
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem;             /* Clickable area around text */
   border-radius: var(--radius);
   font-weight: 500;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s; /* Smooth hover animation */
 }
 
 .site-nav a:hover {
-  background: var(--color-bg);
-  color: var(--color-primary);
+  background: var(--color-bg);      /* Light grey background on hover */
+  color: var(--color-primary);      /* Text turns teal */
 }
 
 .site-nav a.active {
-  background: var(--color-primary);
+  /* The current page's nav link */
+  background: var(--color-primary); /* Solid teal background */
   color: white;
 }
 
-/* ---------- MAIN ---------- */
+
+/* ── MAIN CONTENT AREA ──────────────────────────────────────────
+   Wrapper that centers and limits width of all page content.
+   ────────────────────────────────────────────────────────────── */
 
 .main-content {
   max-width: 960px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 2rem 1.5rem 4rem;        /* 2rem top, sides, 4rem bottom */
 }
 
-/* ---------- TYPOGRAPHY ---------- */
 
-h1,h2,h3 {
-  font-family: var(--font-heading);
+/* ── TYPOGRAPHY ─────────────────────────────────────────────────
+   Default styles for headings and paragraphs.
+   ────────────────────────────────────────────────────────────── */
+
+h1, h2, h3 {
+  font-family: var(--font-heading); /* Serif font for all headings */
   color: var(--color-text);
-  margin-top: 0;
+  margin-top: 0;                    /* Remove default top margin */
 }
 
-h1 { font-size: 2rem; margin-bottom: 1rem; }
+h1 { font-size: 2rem;   margin-bottom: 1rem; }
 h2 { font-size: 1.5rem; margin-bottom: 0.75rem; }
 h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 
@@ -108,7 +154,7 @@ p {
   color: var(--color-text);
 }
 
-/* 🔴 GUARANTEE TEXT NEVER TRUNCATES */
+/* Safety net — text inside cards never gets cut off or truncated */
 .card,
 .card p {
   white-space: normal !important;
@@ -118,39 +164,53 @@ p {
   max-height: none !important;
 }
 
-.card ol {
-  padding-left: 1.3rem;
-}
-
-.card li {
-  margin-bottom: 0.9rem;
-}
+.card ol { padding-left: 1.3rem; }
+.card li { margin-bottom: 0.9rem; }
 
 
-/* ---------- HERO ---------- */
+/* ── HERO SECTION ───────────────────────────────────────────────
+   Big banner at the top of the home page.
+   ────────────────────────────────────────────────────────────── */
 
 .hero {
   text-align: center;
   padding: 3rem 1rem 4rem;
-  background: linear-gradient(180deg,var(--color-card) 0%,var(--color-bg) 100%);
+  background: linear-gradient(180deg, var(--color-card) 0%, var(--color-bg) 100%);
+  /* Gradient: white at top fading to light grey at bottom */
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  /* Only bottom corners rounded — top goes edge-to-edge */
   margin-bottom: 2rem;
 }
 
+.hero-logo {
+  margin-bottom: 1.25rem;           /* Space below the logo before the h1 */
+}
+
+.hero-logo-img {
+  /* Large circular PS logo in the hero section */
+  display: block;
+  margin: 0 auto;                   /* Centers the image */
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;               /* Circle */
+}
+
 .hero h1 {
-  font-size: 2.25rem;
+  font-size: 2.25rem;               /* Slightly larger than default h1 */
   margin-bottom: 0.75rem;
 }
 
 .hero .tagline {
   font-size: 1.15rem;
-  color: var(--color-text-muted);
-  max-width: 540px;
-  margin: 0 auto 1.5rem;
+  color: var(--color-text-muted);   /* Muted grey — less prominent than headline */
+  max-width: 540px;                 /* Limits line length for readability */
+  margin: 0 auto 1.5rem;            /* Centered, space below before button */
 }
 
 .hero .cta {
-  display: inline-block;
+  /* The "REGISTER NOW" button */
+  display: inline-block;            /* Allows padding on all sides */
   background: var(--color-primary);
   color: white !important;
   padding: 0.75rem 1.5rem;
@@ -162,163 +222,286 @@ p {
 
 .hero .cta:hover {
   background: var(--color-primary-dark);
-  transform: translateY(-1px);
+  transform: translateY(-1px);      /* Lifts button up 1px — feels interactive */
 }
 
-/* ---------- CARDS ---------- */
+
+/* ── CARDS ──────────────────────────────────────────────────────
+   White content boxes used throughout the site.
+   ────────────────────────────────────────────────────────────── */
 
 .card {
-  background: var(--color-card);
+  background: var(--color-card);    /* White — pops against grey background */
   padding: 1.6rem;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);        /* Faint shadow = elevated look */
+  margin-bottom: 1.5rem;            /* Space between stacked cards */
 }
 
 .card h2 {
-  color: var(--color-primary);
+  color: var(--color-primary);      /* Teal section headings inside cards */
   margin-bottom: 0.6rem;
 }
 
-/* better readability for long sections */
 .card p + p {
-  margin-top: 0.9rem;
+  /* Only targets 2nd+ paragraphs (the one AFTER another <p>) */
+  margin-top: 0.9rem;               /* Extra breathing room between paragraphs */
 }
 
-/* ---------- FAQ ---------- */
 
-.faq-list { list-style:none; padding:0; margin:0; }
+/* ── ORGANISER CARDS ────────────────────────────────────────────
+   Grid of profile cards on the Organisers page.
+   ────────────────────────────────────────────────────────────── */
+
+.organiser-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  /* Magic responsive grid:
+     auto-fill = create as many columns as fit
+     minmax(280px, 1fr) = each column min 280px wide, max 1 fraction of space
+     Result: 3 columns on desktop, 2 on tablet, 1 on phone — automatically */
+  gap: 1.5rem;
+}
+
+.organiser-card {
+  background: var(--color-card);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  text-align: center;               /* Centers photo, name, bio */
+}
+
+.organiser-card .organiser-photo {
+  /* The circular profile photo */
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  height: 200px;
+  object-fit: cover;                /* Crops to fill circle, no distortion */
+  border-radius: 50%;               /* Circle */
+  margin: 0 auto 1rem;              /* Centered, space below before name */
+  background: var(--color-bg);      /* Grey placeholder if image fails */
+}
+
+.organiser-card h3 {
+  color: var(--color-primary);      /* Teal name */
+  margin-bottom: 0.5rem;
+}
+
+.organiser-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+
+/* ── FAQ PAGE ───────────────────────────────────────────────────
+   Accordion-style questions using HTML <details>/<summary>.
+   No JavaScript needed — the browser handles open/close.
+   ────────────────────────────────────────────────────────────── */
+
+.faq-list { list-style: none; padding: 0; margin: 0; }
 
 .faq-item {
   background: var(--color-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   margin-bottom: 1rem;
-  overflow: hidden;
+  overflow: hidden;                 /* Clips content to rounded corners */
 }
 
 .faq-item summary {
+  /* The clickable question text */
   padding: 1rem 1.25rem;
   font-weight: 600;
-  cursor: pointer;
-  list-style: none;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  cursor: pointer;                  /* Hand cursor — signals clickable */
+  list-style: none;                 /* Removes default triangle */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   /* Question left, +/− icon right */
 }
 
-.faq-item summary::-webkit-details-marker { display:none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+/* Hides Chrome/Safari's default disclosure arrow */
 
 .faq-item summary::after {
-  content:"+";
-  font-size:1.25rem;
-  color:var(--color-primary);
+  content: "+";                     /* Custom + icon — no extra HTML needed */
+  font-size: 1.25rem;
+  color: var(--color-primary);
 }
 
-.faq-item[open] summary::after { content:"−"; }
+.faq-item[open] summary::after { content: "−"; }
+/* When FAQ is expanded ([open] attribute), change + to − */
 
 .faq-item .answer {
-  padding:0 1.25rem 1.25rem;
-  color:var(--color-text-muted);
-  border-top:1px solid var(--color-bg);
+  padding: 0 1.25rem 1.25rem;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-bg);
 }
 
-/* ---------- SIGNUP ---------- */
 
-.signup-form { max-width:420px; margin:0 auto 2rem; }
+/* ── SIGNUP FORM ────────────────────────────────────────────────
+   Styles for the sign up page form fields and buttons.
+   ────────────────────────────────────────────────────────────── */
 
-.form-group { margin-bottom:1.25rem; }
+.signup-form { max-width: 420px; margin: 0 auto 2rem; }
+
+.form-group { margin-bottom: 1.25rem; }
 
 .form-group label {
-  display:block;
-  font-weight:600;
-  margin-bottom:0.35rem;
+  display: block;                   /* Label on its own line above input */
+  font-weight: 600;
+  margin-bottom: 0.35rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  width:100%;
-  padding:0.6rem 0.75rem;
-  font:inherit;
-  border:1px solid #e2e8f0;
-  border-radius:var(--radius);
-  background:var(--color-card);
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font: inherit;                    /* Uses page font — not browser default */
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius);
+  background: var(--color-card);
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  outline:none;
-  border-color:var(--color-primary);
-  box-shadow:0 0 0 3px rgba(15,118,110,0.15);
+  /* Styles when user is typing in a field */
+  outline: none;                    /* Remove ugly default browser outline */
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(15,118,110,0.15); /* Soft teal glow */
 }
 
 .form-group textarea {
-  min-height:100px;
-  resize:vertical;
+  min-height: 100px;
+  resize: vertical;                 /* User can drag to make taller, not wider */
 }
 
 button[type="submit"] {
-  width:100%;
-  padding:0.75rem 1.5rem;
-  font-weight:600;
-  color:white;
-  background:var(--color-primary);
-  border:none;
-  border-radius:var(--radius);
-  cursor:pointer;
+  /* The form submit button */
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  color: white;
+  background: var(--color-primary);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
 }
 
-button[type="submit"]:hover {
-  background:var(--color-primary-dark);
-}
+button[type="submit"]:hover { background: var(--color-primary-dark); }
 
 .form-note {
-  font-size:0.9rem;
-  color:var(--color-text-muted);
-  margin-top:1rem;
-  text-align:center;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: 1rem;
+  text-align: center;
 }
 
-/* ---------- FOOTER ---------- */
+.signup-cta {
+  /* Standalone "Open registration form" button on signup page */
+  display: inline-block;
+  background: var(--color-primary);
+  color: white !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 1rem;
+}
+
+.signup-cta:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+
+/* ── FOOTER ─────────────────────────────────────────────────────
+   Bottom section with contact links and nav.
+   ────────────────────────────────────────────────────────────── */
 
 .site-footer {
-  text-align:center;
-  padding:2rem 1.5rem;
-  color:var(--color-text-muted);
-  font-size:0.9rem;
-  border-top:1px solid #e2e8f0;
-  margin-top:3rem;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  border-top: 1px solid #e2e8f0;   /* Subtle dividing line above footer */
+  margin-top: 3rem;
 }
 
-.site-footer a {
-  color:var(--color-primary);
-  text-decoration:none;
+.footer-contact {
+  margin-bottom: 1.5rem;            /* Space between contact links and copyright line */
 }
 
-.site-footer a:hover { text-decoration:underline; }
+.footer-contact-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 0.75rem;
+}
+
+.footer-contact-links {
+  /* Row of contact links: Email · WhatsApp · Facebook etc */
+  display: flex;
+  flex-wrap: wrap;                  /* Wraps to new line on small screens */
+  justify-content: center;
+  gap: 0.5rem 1.25rem;              /* 0.5rem vertical gap, 1.25rem horizontal gap */
+}
+
+.footer-contact-item {
+  color: var(--color-primary);      /* Teal links */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-contact-item:hover { text-decoration: underline; }
+
+.site-footer a,
+.footer-nav a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.footer-nav a:hover { text-decoration: underline; }
+
+
+/* ── PAGE TITLE ─────────────────────────────────────────────────
+   Used on FAQ, Organisers, Signup pages.
+   Adds a teal underline accent below the page heading.
+   ────────────────────────────────────────────────────────────── */
 
 .page-title {
-  margin-bottom:1.5rem;
-  padding-bottom:0.5rem;
-  border-bottom:3px solid var(--color-primary);
-  display:inline-block;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--color-primary); /* Teal decorative underline */
+  display: inline-block;
+  /* inline-block makes the border only as wide as the text, not full page width */
 }
 
-/* ---------- MOBILE ---------- */
 
-@media (max-width:640px){
-  .hero h1 { font-size:1.75rem; }
-  .nav-inner { justify-content:center; }
-  .site-nav { justify-content:center; }
+/* ── MOBILE RESPONSIVE ──────────────────────────────────────────
+   Styles that only apply on screens 640px wide or less (phones).
+   ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.75rem; }     /* Smaller headline on phones */
+  .nav-inner { justify-content: center; } /* Center nav content on phones */
+  .site-nav { justify-content: center; }  /* Center nav links on phones */
 }
 
-/* FORCE NO TEXT TRUNCATION ANYWHERE */
+
+/* ── GLOBAL ANTI-TRUNCATION ─────────────────────────────────────
+   Safety net — text is never cut off anywhere on the page.
+   !important overrides any conflicting rules.
+   ────────────────────────────────────────────────────────────── */
+
 p, span, div, h1, h2, h3, h4, h5, h6, summary, a {
-  white-space: normal !important;
-  overflow: visible !important;
-  text-overflow: clip !important;
-  max-height: none !important;
+  white-space: normal !important;    /* Text always wraps */
+  overflow: visible !important;      /* Content never hidden */
+  text-overflow: clip !important;    /* No "..." truncation */
+  max-height: none !important;       /* No height limit */
 }
-
